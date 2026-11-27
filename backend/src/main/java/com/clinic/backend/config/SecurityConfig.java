@@ -96,10 +96,8 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
 
-                // Temporary: login CSRF is disabled for the current integration test.
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/login")
-                )
+                // Protect login and all other state-changing requests with CSRF.
+                .csrf(csrf -> csrf)
 
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint((request, response, authException) -> {
