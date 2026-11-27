@@ -48,6 +48,17 @@ function App() {
     setLoading(true);
 
     try {
+      // Get a CSRF token before submitting the login form.
+      const csrfResponse = await fetch(`${API_URL}/api/auth/csrf`, {
+        credentials: "include",
+      });
+
+      if (!csrfResponse.ok) {
+        throw new Error("Unable to get security token");
+      }
+
+      const csrfData = await csrfResponse.json();
+
       const formData = new URLSearchParams();
       formData.append("username", username.trim());
       formData.append("password", password);
@@ -56,6 +67,7 @@ function App() {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
+          [csrfData.headerName]: csrfData.token,
         },
         credentials: "include",
         body: formData.toString(),
