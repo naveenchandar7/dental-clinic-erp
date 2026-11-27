@@ -29,6 +29,7 @@ function Login() {
 
     try {
       const user = await login(username, password);
+      setPassword("");
 
       // Frontend role-based navigation after the single login API call.
       if (user.role === "ADMIN") {
