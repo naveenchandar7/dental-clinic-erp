@@ -3,48 +3,66 @@ import { useAuth } from "../context/AuthContext.jsx";
 
 const menus = {
   ADMIN: [
-    { label: "Dashboard", path: "/admin", end: true },
-    { label: "Patients", path: "/admin/patients" },
-    { label: "Appointments", path: "/admin/appointments" },
-    { label: "Billing", path: "/admin/billing" },
-    { label: "User Management", path: "/admin/users" },
+    { section: "OVERVIEW", items: [{ label: "Dashboard", path: "/admin", icon: "▦", end: true }] },
+    { section: "CLINIC OPERATIONS", items: [
+      { label: "Patients", path: "/admin/patients", icon: "♙" },
+      { label: "Appointments", path: "/admin/appointments", icon: "▣" },
+      { label: "Doctors & Staff", path: "/admin/staff", icon: "♧" },
+      { label: "Treatments", path: "/admin/treatments", icon: "✚" }
+    ]},
+    { section: "FINANCE", items: [
+      { label: "Billing & Invoices", path: "/admin/billing", icon: "₹" },
+      { label: "Payment History", path: "/admin/payments", icon: "↔" },
+      { label: "Outstanding Payments", path: "/admin/outstanding", icon: "◷" }
+    ]},
+    { section: "ADMINISTRATION", items: [
+      { label: "Reports & Analytics", path: "/admin/reports", icon: "▤" },
+      { label: "User Management", path: "/admin/users", icon: "♙" },
+      { label: "Audit Logs", path: "/admin/audit-logs", icon: "☷" },
+      { label: "Settings", path: "/admin/settings", icon: "⚙" }
+    ]}
   ],
   RECEPTIONIST: [
-    { label: "Dashboard", path: "/reception", end: true },
-    { label: "Patients", path: "/reception/patients" },
-    { label: "Appointments", path: "/reception/appointments" },
-    { label: "Billing", path: "/reception/billing" },
+    { section: "WORKSPACE", items: [
+      { label: "Dashboard", path: "/reception", icon: "▦", end: true },
+      { label: "Patients", path: "/reception/patients", icon: "♙" },
+      { label: "Appointments", path: "/reception/appointments", icon: "▣" },
+      { label: "Billing & Payments", path: "/reception/billing", icon: "₹" },
+      { label: "Payment History", path: "/reception/payments", icon: "↔" }
+    ]}
   ],
   DOCTOR: [
-    { label: "Dashboard", path: "/doctor", end: true },
-    { label: "My Appointments", path: "/doctor/appointments" },
-    { label: "Patient Records", path: "/doctor/patients" },
-    { label: "Treatments", path: "/doctor/treatments" },
-  ],
+    { section: "CLINICAL WORKSPACE", items: [
+      { label: "Dashboard", path: "/doctor", icon: "▦", end: true },
+      { label: "My Appointments", path: "/doctor/appointments", icon: "▣" },
+      { label: "My Patients", path: "/doctor/patients", icon: "♙" },
+      { label: "Treatment Records", path: "/doctor/treatments", icon: "✚" },
+      { label: "Follow-ups", path: "/doctor/follow-ups", icon: "◷" }
+    ]}
+  ]
 };
 
-function Sidebar() {
+function Sidebar({ collapsed }) {
   const { auth } = useAuth();
-  const role = auth?.role;
-  const roleMenus = menus[role] || [];
+  const sections = menus[auth?.role] || [];
 
   return (
-    <aside className="sidebar">
-      <h3>{role} MENU</h3>
-      <nav>
-        {roleMenus.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            end={item.end}
-            className={({ isActive }) =>
-              isActive ? "nav-link active" : "nav-link"
-            }
-          >
-            {item.label}
-          </NavLink>
-        ))}
-      </nav>
+    <aside className={`sidebar ${collapsed ? "collapsed" : ""}`}>
+      {sections.map((section) => (
+        <div className="sidebar-section" key={section.section}>
+          {!collapsed && <h3>{section.section}</h3>}
+          <nav>
+            {section.items.map((item) => (
+              <NavLink key={item.path} to={item.path} end={item.end}
+                title={collapsed ? item.label : undefined}
+                className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                <span className="nav-icon">{item.icon}</span>
+                {!collapsed && <span>{item.label}</span>}
+              </NavLink>
+            ))}
+          </nav>
+        </div>
+      ))}
     </aside>
   );
 }
