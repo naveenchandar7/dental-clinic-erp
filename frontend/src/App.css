@@ -541,3 +541,100 @@ body,
     font-size: 12px;
   }
 }
+
+
+/* ========================================
+   DENTALCARE ERP - HOSPITAL DASHBOARD UI
+======================================== */
+:root {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: #24364b;
+  background: #f4f7fb;
+  font-synthesis: none;
+}
+body { font-family: Inter, "Segoe UI", Arial, sans-serif; }
+.dashboard-container { background: #f4f7fb; min-height: 100vh; }
+.dashboard-header {
+  min-height: 72px; height: 72px; padding: 0 28px; background: #fff;
+  color: #20364d; border-bottom: 1px solid #e6ebf1; box-shadow: 0 2px 8px rgba(20,45,70,.03);
+}
+.header-left { display:flex; align-items:center; gap:18px; }
+.dashboard-header .brand { font-size:19px; color:#183b5b; }
+.dashboard-header .brand-icon { width:36px; height:36px; border-radius:10px; background:#e7f3f8; color:#087b9d; font-size:21px; }
+.sidebar-toggle { width:38px; height:38px; border:1px solid #e1e8ef; background:#fff; color:#50657a; border-radius:9px; cursor:pointer; font-size:19px; }
+.sidebar-toggle:hover { background:#f1f7fa; color:#087b9d; }
+.navbar-user { gap:11px; }
+.user-avatar { width:38px; height:38px; border-radius:50%; display:grid; place-items:center; background:#e7f3f8; color:#087b9d; font-weight:700; }
+.user-details { display:flex; flex-direction:column; gap:2px; min-width:90px; }
+.user-details strong { font-size:13px; color:#243b53; }
+.user-details span { font-size:11px; color:#718096; letter-spacing:.5px; }
+.logout-button { background:#fff; color:#53677c; border:1px solid #dce5ed; padding:9px 15px; border-radius:8px; }
+.logout-button:hover { background:#f5f8fb; }
+.app-layout { min-height:calc(100vh - 72px); }
+.sidebar {
+  width:252px; padding:24px 14px; background:#fff; border-right:1px solid #e6ebf1;
+  transition:width .2s ease; overflow:hidden;
+}
+.sidebar.collapsed { width:76px; padding-left:12px; padding-right:12px; }
+.sidebar-section { margin-bottom:25px; }
+.sidebar h3 { color:#91a0af; font-size:10px; font-weight:700; letter-spacing:1.1px; margin:0 0 10px 12px; padding:0; white-space:nowrap; }
+.sidebar nav { gap:4px; }
+.nav-link { display:flex; align-items:center; gap:13px; min-height:42px; padding:10px 12px; border-radius:8px; color:#53677c; font-size:13px; font-weight:500; white-space:nowrap; }
+.nav-icon { width:20px; min-width:20px; display:inline-grid; place-items:center; font-size:17px; color:#7a8da0; }
+.nav-link:hover,.nav-link.active { background:#eaf4f8; color:#087b9d; }
+.nav-link.active { font-weight:700; box-shadow:inset 3px 0 #087b9d; }
+.nav-link.active .nav-icon { color:#087b9d; }
+.sidebar.collapsed .nav-link { justify-content:center; padding:10px 0; }
+.sidebar.collapsed .nav-link.active { box-shadow:inset 3px 0 #087b9d; }
+.page-content { padding:30px 34px; }
+.dashboard-home { max-width:1500px; margin:0 auto; }
+.page-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:25px; }
+.page-heading .eyebrow { color:#8192a3; font-size:10px; font-weight:700; letter-spacing:1.2px; margin-bottom:9px; }
+.page-heading h1 { color:#1d354d; font-size:25px; font-weight:700; margin-bottom:7px; }
+.page-heading p:not(.eyebrow) { color:#7b8b9b; font-size:13px; }
+.today-chip { background:#fff; border:1px solid #e5ebf1; border-radius:8px; padding:9px 12px; color:#8090a0; font-size:11px; }
+.today-chip strong { color:#43596f; margin-left:5px; }
+.stats-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-bottom:18px; }
+.stat-card,.content-panel { background:#fff; border:1px solid #e7edf2; border-radius:11px; box-shadow:0 3px 12px rgba(30,55,80,.035); }
+.stat-card { padding:18px 19px; min-height:130px; }
+.stat-top { display:flex; justify-content:space-between; align-items:center; color:#718397; font-size:12px; font-weight:600; }
+.stat-icon { display:grid; place-items:center; width:33px; height:33px; border-radius:9px; background:#edf6f9; color:#087b9d; font-size:17px; }
+.stat-value { display:block; margin-top:12px; color:#203a52; font-size:25px; line-height:1; }
+.stat-card p { color:#9aa7b4; font-size:11px; margin-top:8px; }
+.dashboard-panels { display:grid; grid-template-columns:minmax(0,1.7fr) minmax(260px,1fr); gap:16px; }
+.content-panel { padding:20px; min-height:240px; }
+.panel-heading { display:flex; justify-content:space-between; gap:12px; }
+.content-panel h2 { color:#2a4056; font-size:14px; margin-bottom:6px; }
+.panel-heading p { color:#91a0af; font-size:11px; }
+.panel-symbol { color:#087b9d; font-size:20px; }
+.empty-state { min-height:145px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; color:#91a0af; gap:7px; }
+.empty-state > span { font-size:27px; color:#9bbac8; }
+.empty-state strong { color:#53677c; font-size:12px; }
+.empty-state p { max-width:420px; font-size:11px; line-height:1.6; }
+.quick-panel h2 { margin-bottom:17px; }
+.quick-row { display:flex; justify-content:space-between; gap:10px; padding:13px 0; border-bottom:1px solid #eef2f5; font-size:11px; }
+.quick-row span { color:#8191a1; }
+.quick-row strong { color:#40566c; }
+@media (max-width:1000px) {
+  .stats-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .dashboard-panels { grid-template-columns:1fr; }
+}
+@media (max-width:768px) {
+  .dashboard-header { padding:0 14px; }
+  .dashboard-header .brand { font-size:15px; }
+  .user-details { display:none; }
+  .logout-button { padding:8px 10px; }
+  .app-layout { flex-direction:row; }
+  .sidebar { width:76px; min-width:76px; padding:15px 10px; }
+  .sidebar:not(.collapsed) { width:220px; min-width:220px; }
+  .sidebar:not(.collapsed) .nav-link { white-space:normal; }
+  .page-content { padding:22px 15px; }
+  .page-heading { align-items:flex-start; flex-direction:column; }
+  .stats-grid { grid-template-columns:1fr 1fr; gap:10px; }
+  .stat-card { padding:14px; min-height:120px; }
+  .stat-value { font-size:22px; }
+}
+@media (max-width:420px) {
+  .dashboard-header .brand span { display:none; }
+  .stats-grid { grid-template-columns:1fr; }
+}
